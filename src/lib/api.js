@@ -38,7 +38,7 @@ export const apiUpdatePost = (id, post) => {
         }
     };
 
-    fetch(url, request)
+    return fetch(url, request)
         .then(response => response.json())
 };
 
@@ -48,6 +48,6 @@ export const apiDeletePost = (id) => {
 
     const request = { method: 'DELETE' };
 
-    fetch(url, request)
+    return fetch(url, request)
         .then(response => response.json())
 };

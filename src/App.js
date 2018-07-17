@@ -29,7 +29,7 @@ class App extends Component {
           <h2>Posts</h2>
           {
             posts.map(post =>
-              <Post {...post} />
+              <Post {...post} update={this.props.fetchUpdatePost} />
             )}
         </div>
       </div>

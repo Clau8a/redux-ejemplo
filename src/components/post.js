@@ -26,16 +26,20 @@ class Post extends Component {
     }
 
     handleSave() {
-        this.setState({
-            editing: false
-        })
+        this.props.update(this.props.id,
+            { 
+                title: this.state.title,
+                body: this.state.body
+            }
+        )
+        this.setState({ editing: false })
     }
 
     handleEdit(event) {
         this.setState({ editing: true });
     }
 
-    handleDelete(){
+    handleDelete() {
         this.setState({ deleted: true });
     }
 
