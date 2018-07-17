@@ -4,7 +4,6 @@ class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            deleted: false,
             editing: false,
             title: this.props.title,
             body: this.props.body
@@ -40,7 +39,7 @@ class Post extends Component {
     }
 
     handleDelete() {
-        this.setState({ deleted: true });
+        this.props.delete(this.props.id);
     }
 
     componentWillReceiveProps(newProps) {
@@ -60,7 +59,7 @@ class Post extends Component {
                 </div>
 
                 :
-                <div className={"col-xs-12 post " + (this.state.deleted ? " hide" : "")}>
+                <div className="col-xs-12 post">
                     <div className="col-xs-11" title="click para editar" onClick={this.handleEdit.bind(this)}>
                         <h2>{this.state.title}</h2>
                         <p>{this.state.body}</p>
