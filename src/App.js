@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-//import "bootstrap.css";
+
+import { connect } from 'react-redux';
+
 
 import Post from './components/post';
+import { fetchGetPost, fetchAddPost, fetchUpdatePost, fetchDeletePost } from './reducers/postsReducer';
 
-const posts = [
-  {
-    "userId": 1,
-    "id": 1,
-    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum"
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "title": "qui est esse",
-    "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor"
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
-    "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut"
-  },
-];
+
 
 class App extends Component {
 
+  componentDidMount() {
+    this.props.fetchGetPost();
+  }
+
   render() {
+    const posts = this.props.posts;
+    console.log("posts", posts);
     return (
       <div className="App">
         <header className="App-header">
@@ -37,13 +27,23 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <h2>Posts</h2>
-          {posts.map(post =>
-            <Post {...post} />
-          )}
+          {
+            posts.map(post =>
+              <Post {...post} />
+            )}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  //función que mapea propiedades del state con propiedades del componente
+  (state) => ({
+    posts: state.posts.posts,
+  }),
+  //mapeo de funciones
+  {
+    fetchGetPost, fetchAddPost, fetchUpdatePost, fetchDeletePost
+  }
+)(App);
