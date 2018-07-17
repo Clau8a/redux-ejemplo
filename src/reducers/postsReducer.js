@@ -78,13 +78,14 @@ export default (state = initialState, action) => {
             return { ...state, posts: action.payload };
 
         case ADD_POST:
+            console.log(ADD_POST, action);
             return {
                 ...state,
-                posts: [action.payload, ...state.post.rows]
+                posts: [action.payload, ...state.posts]
             };
-            //concatenamos los posts exitentes con el nuevo post, en este caso se agregan los posts al inicio del arreglo 
-            //si quisieramos ponerlo al final lo cambiamos de la siguiente manera 
-            //posts: [...state.post.rows, action.payload]
+        //concatenamos los posts exitentes con el nuevo post, en este caso se agregan los posts al inicio del arreglo 
+        //si quisieramos ponerlo al final lo cambiamos de la siguiente manera 
+        //posts: [...state.post.rows, action.payload]
 
         case UPDATE_POST:
             return {
@@ -97,8 +98,8 @@ export default (state = initialState, action) => {
                     )
                 ]
             }
-            //Con el uso de la funcion map regresamos un nuevo arreglo con el cual reemplazamos el post con las propiedades 
-            //no actualizadas por el post actualizado
+        //Con el uso de la funcion map regresamos un nuevo arreglo con el cual reemplazamos el post con las propiedades 
+        //no actualizadas por el post actualizado
 
         case DELETE_POST:
 
@@ -106,7 +107,7 @@ export default (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts.filter(post => post.id !== action.payload)]
             }
-            //Haciendo uso de la funcion filter, creamos un nuevo arreglo que excluye el post que eliminamos 
+        //Haciendo uso de la funcion filter, creamos un nuevo arreglo que excluye el post que eliminamos 
 
         default:
             return { ...state };
