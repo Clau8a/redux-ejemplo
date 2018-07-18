@@ -1,7 +1,7 @@
 const BASEURL = "https://jsonplaceholder.typicode.com";
 
-// el parámetro num indica cuantos post queremos obtener
-export const apiGetPost = (num) => {
+
+export const apiGetPost = () => {
 
     const url = BASEURL + "/posts" ;
 
